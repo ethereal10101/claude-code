@@ -48,7 +48,7 @@ import {
   isDeferredTool,
   TOOL_SEARCH_TOOL_NAME,
 } from '../../tools/ToolSearchTool/prompt.js'
-import { getAllBaseTools } from '../../tools.js'
+import { getAllBaseTools, getToolRegistry } from '../../tools.js'
 import type { HookProgress } from '../../types/hooks.js'
 import type {
   AssistantMessage,
@@ -348,7 +348,7 @@ export async function* runToolUse(
   // (e.g., old transcripts calling "KillShell" which is now an alias for "TaskStop")
   // Only fall back for tools where the name matches an alias, not the primary name
   if (!tool) {
-    const fallbackTool = findToolByName(getAllBaseTools(), toolName)
+    const fallbackTool = getToolRegistry().get(toolName) ?? findToolByName(getAllBaseTools(), toolName)
     // Only use fallback if the tool was found via alias (deprecated name)
     if (fallbackTool && fallbackTool.aliases?.includes(toolName)) {
       tool = fallbackTool

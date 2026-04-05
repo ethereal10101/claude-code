@@ -15,7 +15,7 @@ import {
   getEmptyToolPermissionContext,
   type ToolUseContext,
 } from '../Tool.js'
-import { getTools } from '../tools.js'
+import { getTools, getToolRegistry } from '../tools.js'
 import { createAbortController } from '../utils/abortController.js'
 import { createFileStateCacheWithSizeLimit } from '../utils/fileStateCache.js'
 import { logError } from '../utils/log.js'

@@ -2767,7 +2767,7 @@ async function run(): Promise<CommanderCommand> {
         isEnvTruthy(process.env.CLAUDE_CODE_COORDINATOR_MODE)
       ) {
         const { applyCoordinatorToolFilter } = await import(
-          './utils/toolPool.js'
+          './tools/registry/filtering.js'
         )
         tools = applyCoordinatorToolFilter(tools)
       }
